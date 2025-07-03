@@ -1,2 +1,5 @@
 <h1>Home#top</h1>
+<% if user_signed_in? %>
+<%= link_to "show", "/users/show" %>
+<% end %>
 <p>Find me in app/views/home/top.html.erb</p>
