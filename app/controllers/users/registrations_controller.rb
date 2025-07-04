@@ -30,7 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def profiles_update
     @user = current_user
-    if @user.update(params.require(:user).permit(:name, :introduce))
+    if @user.update(params.require(:user).permit(:name, :icon_image, :introduce))
       redirect_to "/"
     else
       render "/profiles/edit"

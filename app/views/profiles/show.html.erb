@@ -1,3 +1,12 @@
+
+<p>アイコン画像 :
+<% if @user.icon_image? %>
+  <%= image_tag @user.icon_image.url %>
+<% else %>
+  <%= image_tag("default.png") %>
+<% end %>
+</p>
+
 <p>名前 : <%= @user.name %></p>
 <o>自己紹介 : <%= @user.introduce %></p>
 

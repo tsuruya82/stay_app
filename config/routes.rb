@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     patch 'users/profiles_update', to: 'users/registrations#profiles_update'
   end
 
-  get "users/show", to: "users#show"
+  get 'users/show', to: 'users#show'
   get 'profiles/show', to: "profiles#show"
 
   root to: 'home#top'
