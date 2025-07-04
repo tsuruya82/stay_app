@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   end
 
   get 'users/show', to: 'users#show'
-  get 'profiles/show', to: "profiles#show"
+  get 'profiles/show', to: 'profiles#show'
 
   resources :rooms
 
+  get 'index', to: 'home#index'
+  
   root to: 'home#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

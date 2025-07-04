@@ -33,4 +33,5 @@ class RoomsController < ApplicationController
       render 'edit'
     end
   end
+  
 end

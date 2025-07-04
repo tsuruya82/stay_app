@@ -13,14 +13,14 @@
   <body>
 
     <% if current_user %>
-      <% if @user.icon_image? %>
-        <%= image_tag @user.icon_image.url %>
+      <% if current_user.icon_image? %>
+        <%= image_tag current_user.icon_image.url %>
       <% else %>
         <%= image_tag("default_icon.png") %>
       <% end %>
 
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary"><%= @user.name %></button>
+        <button type="button" class="btn btn-secondary"><%= current_user.name %></button>
         <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
         <span class="sr-only">Toggle Dropdown</span>
         </button>
