@@ -13,7 +13,11 @@
   <body>
 
     <% if current_user %>
-      <%= image_tag @user.icon_image.url %>
+      <% if @user.icon_image? %>
+        <%= image_tag @user.icon_image.url %>
+      <% else %>
+        <%= image_tag("default_icon.png") %>
+      <% end %>
 
       <div class="btn-group">
         <button type="button" class="btn btn-secondary"><%= @user.name %></button>

@@ -1,5 +1,13 @@
 <h3>施設詳細</h3>
 <%= link_to "編集", edit_room_path %>
+<p>施設画像 :
+<% if @room.image? %>
+  <%= image_tag @room.image.url %>
+<% else %>
+  <%= image_tag("default_room.png") %>
+<% end %>
+</p>
+
 <table>
   <tr>
     <th>名前</th>
