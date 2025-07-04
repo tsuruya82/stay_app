@@ -1,0 +1,6 @@
+class Room < ApplicationRecord
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :charge_day, presence: true, numercality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validates :address, presence: true
+end
