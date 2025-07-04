@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = Room.all
+    @rooms = Room.where(user_id: current_user.id)
   end
 
   def new
@@ -8,9 +8,9 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(params.require(:room).permit(:name, :introduction, :charge_day, :address, :image))
+    @room = Room.new(params.require(:room).permit(:name, :introduction, :charge_day, :address, :image, :user_id))
     if @room.save
-      redirect_to :rooms
+      redirect_to root_path
     else
       render 'new'
     end

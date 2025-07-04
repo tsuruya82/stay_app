@@ -1,0 +1,25 @@
+<%= render 'shared/search_form' %>
+<a><%= @sapporos.count %>件が見つかりました。</a>
+
+<% @sapporos.each do |sapporo| %>
+  <table border>
+    <thead>
+      <tr>
+        <td>施設名</td>
+        <td>住所</td>
+        <td>施設詳細</td>
+        <td>宿泊料金</td>
+        <td>詳細</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= sapporo.name %></td>
+        <td><%= sapporo.address %></td>
+        <td><%= sapporo.introduction %></td>
+        <td><%= sapporo.charge_day %></td>
+        <td><%= link_to '詳細はこちら', "/rooms/#{sapporo.id}" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
