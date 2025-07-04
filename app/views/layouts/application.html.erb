@@ -12,33 +12,24 @@
 
   <body>
 
-    <ul>
-      <% if current_user %>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      <% else %> 
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
-      <% end %>
-    </ul>
+    <% if current_user %>
+      <%= image_tag @user.icon_image.url %>
 
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary"><%= @user.name %></button>
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+        <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+        <div class="dropdown-divider"></div>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        </div>
+      </div>
 
-
-
-
-  <div class="btn-group">
-    <button type="button" class="btn btn-secondary"><a><%= @user.name %></a></button>
-    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
-      <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </div>
-</div>
-
+    <% else %> 
+      <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to '新期登録', new_user_registration_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
