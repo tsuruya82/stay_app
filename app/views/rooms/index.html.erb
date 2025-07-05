@@ -6,16 +6,18 @@
         <td>住所</td>
         <td>施設詳細</td>
         <td>宿泊料金</td>
+        <td>作成日</td>
         <td>詳細</td>
       </tr>
     </thead>
-    
+
     <tbody>
       <tr>
         <td><%= room.name %></td>
         <td><%= room.address %></td>
         <td><%= room.introduction %></td>
         <td><%= room.charge_day %></td>
+        <td><%= room.created_at.to_s(:datetime_jp) %></td>
         <td><%= link_to '詳細はこちら', "/rooms/#{room.id}" %></td>
       </tr>
     </tbody>
