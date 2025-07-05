@@ -24,6 +24,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def account
+  end
+
+  def profiles
+  end
+
   def profiles_edit
     @user = current_user
   end
