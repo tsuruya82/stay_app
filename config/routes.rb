@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   get 'kyoto_search', to: 'home#kyoto_search'
   get 'sapporo_search', to: 'home#sapporo_search'
   
-  root to: 'home#top'
+  root to: 'homes#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
