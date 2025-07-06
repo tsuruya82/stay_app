@@ -6,6 +6,7 @@ class CreateRooms < ActiveRecord::Migration[6.1]
       t.string :introduction
       t.integer :charge_day
       t.string :address
+      t.integer :user_id
 
       t.timestamps
     end

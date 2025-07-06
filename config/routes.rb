@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'reservations/index'
+  get 'reservations/new'
+  get 'reservations/show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -12,6 +15,12 @@ Rails.application.routes.draw do
   end
 
   resources :rooms
+
+  resources :reservations, only: [:index, :create] do
+    collection do
+      post 'confirmation', to: 'reservations#confirmation'
+    end
+  end
 
   get 'index', to: 'homes#index'
   get 'tokyo_search', to: 'homes#tokyo_search'

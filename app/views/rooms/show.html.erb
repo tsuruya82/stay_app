@@ -1,4 +1,6 @@
 <h3>施設詳細</h3>
+
+
 <%= link_to '戻る', 'javascript:history.back()' %>
 <%= link_to "編集", edit_room_path %>
 
@@ -26,3 +28,16 @@
     <td><%= @room.charge_day %></td>
   </tr>
 </table>
+
+<h3>予約</h3>
+
+<ul>
+  <%= form_with model: @reservation, url: confirmation_reservations_path, method: :post, local: true, data: { turbo: false } do |f| %>
+    <%= f.hidden_field :room_id, value: @room.id, name: 'reservation[room_id]' %>
+    <%= f.hidden_field :user_id, value: current_user.id, name: 'reservation[user_id]' %>
+    <li>チェックイン<%= f.date_field :check_in_date, name: 'reservation[check_in_date]' %></li>
+    <li>チェックアウト<%= f.date_field :check_out_date, name: 'reservation[check_out_date]' %></li>
+    <li>人数<%= f.number_field :number_of_customers, name: 'reservation[number_of_customers]' %></li>
+    <li><%= f.submit "予約する" %></li>
+  <% end %>
+</ul> 

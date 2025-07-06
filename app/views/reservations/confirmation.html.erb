@@ -1,0 +1,20 @@
+<%= render 'shered/error', obj: @reservation %>
+
+<ul>
+  <li>チェックイン<%= @reservation.check_in_date.to_s(confirmed_datetime_jp) %></li>
+  <li>チェックアウト<%= @reservation.check_out_date.to_s(confirmed_datetime_jp) %></li>
+  <li>日数<%= @reservation.sum_of_days %>日</li>
+  <li>人数<%= @reservation.number_of_customers %>人</li>
+  <li>お支払い金額<%= @reservation.sum_of_fee %></li>
+</ul>
+
+<%= form_with url: reservations_path, method: :post, local: true do |f| %>
+  <%= f.hidden_field :room_id, value: @room.id, name: 'reservation[room_id]' %>
+  <%= f.hidden_field :user_id, value: @user.id, name: 'reservation[user_id]' %>
+  <%= f.hidden_field :check_in_date:, value: @chack_in_date, name: 'reservation[check_in_date]' %>
+  <%= f.hidden_field :check_out_date, value: @check_out_date, name: 'reservation[check_out_date]' %>
+  <%= f.hidden_field :number_of_customers value: @number_of_customers, name: 'reservation[number_of_customers]' %>
+  <%= f.submit "予約を確定する" %>
+<% end %>
+
+<%= link_to 'キャンセル', 'javascript:history.back()' %>

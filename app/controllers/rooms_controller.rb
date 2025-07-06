@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = Room.where(user_id: current_user.id)
+    @rooms = current_user.rooms.all
   end
 
   def new
@@ -18,8 +18,9 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @room_edit = @room.id
-  end
+    @reservations = @room.reservations
+    @reservation = @reservations.new
+    end
 
   def edit
     @room = Room.find(params[:id])

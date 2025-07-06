@@ -13,10 +13,11 @@
 ActiveRecord::Schema.define(version: 2025_07_05_004901) do
 
   create_table "reservations", force: :cascade do |t|
-    t.datetime "check_in"
-    t.datetime "check_out"
+    t.datetime "check_in_date"
+    t.datetime "check_out_date"
     t.integer "number_of_customers"
     t.integer "user_id"
+    t.integer "room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -27,9 +28,9 @@ ActiveRecord::Schema.define(version: 2025_07_05_004901) do
     t.string "introduction"
     t.integer "charge_day"
     t.string "address"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
