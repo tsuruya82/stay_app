@@ -58,5 +58,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'psych', '~> 3.1'
 gem 'devise'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+gem 'rmagick'
 gem 'ransack'

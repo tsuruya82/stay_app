@@ -27,14 +27,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def account
   end
 
-  def profiles
+  def profile
   end
 
-  def profiles_edit
+  def profile_edit
     @user = current_user
   end
 
-  def profiles_update
+  def profile_update
     @user = current_user
     if @user.update(params.require(:user).permit(:name, :icon_image, :introduce))
       redirect_to "/"

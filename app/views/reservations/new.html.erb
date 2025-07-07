@@ -2,11 +2,11 @@
 
 
 <ul>
-    <li>チェックイン日: <%= @reservation.check_in_date.try(:to_formatted_s, :date_jp) %></li>
-    <li>チェックアウト日: <%= @reservation.check_out_date.try(:to_formatted_s, :date_jp) %></li>
-    <li>合計人数: <%= @reservation.number_of_customers %>人</li>
+    <li>チェックイン日: <%= @reservation.check_in_date.to_s(:datetime_jp) %></li>
+    <li>チェックアウト日: <%= @reservation.check_out_date.to_s(:datetime_jp) %></li>
     <li>宿泊日数: <%= @reservation.sum_of_days %>日</li>
-    <li>合計料金: <%= @reservation.sum_of_fee %>円</li>
+    <li>人数: <%= @reservation.number_of_customers %>人</li>
+    <li>支払い金額: <%= @reservation.sum_of_fee %>円</li>
 </ul>
 
  <%= form_with model: @reservation do |f| %>

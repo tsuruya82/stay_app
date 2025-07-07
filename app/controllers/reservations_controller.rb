@@ -5,6 +5,10 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new(reservation_params)
+    if @reservation.invalid?
+      @room = @reservation.room
+      render template: "rooms/show"
+    end
   end
 
   def create

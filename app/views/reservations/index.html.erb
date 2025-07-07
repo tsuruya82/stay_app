@@ -14,7 +14,13 @@
 
     <tbody>
       <tr>
-        <td><%= reservation.room.name %></td>
+        <td>
+          <% if reservation.room.image? %>
+            <%= image_tag reservation.room.image.url %>
+          <% else %>
+            <%= image_tag("default_room.png") %>
+          <% end %>
+        </td>
         <td><%= reservation.room.name %></td>
         <td><%= reservation.room.introduction %></td>
         <td><%= reservation.sum_of_fee %></td>

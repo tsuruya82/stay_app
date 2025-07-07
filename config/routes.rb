@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'reservations/index'
-  get 'reservations/new'
-  get 'reservations/show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -9,7 +6,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'users/account', to: 'users/registrations#account'
-    get 'users/profiles', to: 'users/registrations#profiles'
+    get 'users/profile', to: 'users/registrations#profile'
     get 'users/profile_edit', to: 'users/registrations#profile_edit'
     patch 'users/profile_update', to: 'users/registrations#profile_update'
   end
