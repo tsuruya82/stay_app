@@ -1,8 +1,9 @@
 <h3>施設詳細</h3>
 
+<%= Date.today %>
 
 <%= link_to '戻る', 'javascript:history.back()' %>
-<%= link_to "編集", edit_room_path %>
+<%= link_to "編集", "/rooms/#{@room.id}/edit" %>
 
 <p>施設画像 :
 <% if @room.image? %>
@@ -32,12 +33,22 @@
 <h3>予約</h3>
 
 <ul>
-  <%= form_with model: @reservation, url: confirmation_reservations_path, method: :post, local: true, data: { turbo: false } do |f| %>
-    <%= f.hidden_field :room_id, value: @room.id, name: 'reservation[room_id]' %>
-    <%= f.hidden_field :user_id, value: current_user.id, name: 'reservation[user_id]' %>
-    <li>チェックイン<%= f.date_field :check_in_date, name: 'reservation[check_in_date]' %></li>
-    <li>チェックアウト<%= f.date_field :check_out_date, name: 'reservation[check_out_date]' %></li>
-    <li>人数<%= f.number_field :number_of_customers, name: 'reservation[number_of_customers]' %></li>
+<%= form_with model: @reservation, method: :get, url: new_reservation_path do |f| %>
+    <%= f.label :room_id, 'room_id' %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+
+    <%= f.label :user_id, 'user_id' %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <%= f.label :check_in_date, 'チェックイン日' %>
+    <li><%= f.date_field :check_in_date %></li>
+
+    <%= f.label :check_out_date, 'チェックアウト日' %>
+    <li><%= f.date_field :check_out_date %></li>
+
+    <%= f.label :number_of_customers, '人数' %>
+    <li><%= f.number_field :number_of_customers %></li>
+
     <li><%= f.submit "予約する" %></li>
   <% end %>
 </ul> 

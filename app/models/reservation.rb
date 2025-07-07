@@ -10,12 +10,14 @@ class Reservation < ApplicationRecord
 
   def date_before_check_in
     return if check_in_date.blank?
-    errors.add(:check_in_date, "チェックイン日は翌日以降の日にちを選択してください") if check_in_date < Date.today
+    errors.add(:check_in_date, "チェックイン日は翌日以降の日にちを選択してください"
+    ) if check_in_date < Time.zone.today
   end
 
   def date_before_check_out
     return if check_out_date.blank? || check_in_date.blank?
-    errors.add(:check_out_date, "チェックアウト日はチェックイン日以降の日にちを選択してください") if check_out_date < check_in_date
+    errors.add(:check_out_date, "チェックアウト日はチェックイン日以降の日にちを選択してください"
+    ) if check_out_date < check_in_date || check_out_date == check_in_date
   end
 
   def sum_of_days

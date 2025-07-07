@@ -1,0 +1,20 @@
+<h1>予約確認の画面</h1>
+
+
+<ul>
+    <li>チェックイン日: <%= @reservation.check_in_date.try(:to_formatted_s, :date_jp) %></li>
+    <li>チェックアウト日: <%= @reservation.check_out_date.try(:to_formatted_s, :date_jp) %></li>
+    <li>合計人数: <%= @reservation.number_of_customers %>人</li>
+    <li>宿泊日数: <%= @reservation.sum_of_days %>日</li>
+    <li>合計料金: <%= @reservation.sum_of_fee %>円</li>
+</ul>
+
+ <%= form_with model: @reservation do |f| %>
+  <%= f.hidden_field :room_id, value: @reservation.room_id %>
+  <%= f.hidden_field :user_id, value: @reservation.user_id %>
+  <%= f.hidden_field :check_in_date, value: @reservation.check_in_date %>
+  <%= f.hidden_field :check_out_date, value: @reservation.check_out_date %>
+  <%= f.hidden_field :number_of_customers, value: @reservation.number_of_customers %>
+  <%= f.submit "予約を確定する" %>
+<% end %>
+</div>

@@ -10,17 +10,13 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/account', to: 'users/registrations#account'
     get 'users/profiles', to: 'users/registrations#profiles'
-    get 'users/profiles_edit', to: 'users/registrations#profiles_edit'
-    patch 'users/profiles_update', to: 'users/registrations#profiles_update'
+    get 'users/profile_edit', to: 'users/registrations#profile_edit'
+    patch 'users/profile_update', to: 'users/registrations#profile_update'
   end
 
   resources :rooms
 
-  resources :reservations, only: [:index, :create] do
-    collection do
-      post 'confirmation', to: 'reservations#confirmation'
-    end
-  end
+  resources :reservations
 
   get 'index', to: 'homes#index'
   get 'tokyo_search', to: 'homes#tokyo_search'
