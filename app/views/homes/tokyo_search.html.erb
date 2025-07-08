@@ -19,7 +19,7 @@
     <td><%= tokyo.name %></td>
     <td><%= tokyo.address %></td>
     <td><%= tokyo.introduction %></td>
-    <td><%= tokyo.charge_day %></td>
+    <td><%= tokyo.charge_day.to_s(:delimited) %>円</td>
     <td><%= link_to '詳細はこちら', "/rooms/#{tokyo.id}" %></td>
   </tr>
   </tbody>

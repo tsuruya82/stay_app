@@ -1,5 +1,7 @@
 <h3>施設の新期登録</h3>
 
+<%= render 'shared/error', obj: @room %>
+
 <%= form_with model: @room do |f| %>
   <table>
     <tr>

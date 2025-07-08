@@ -1,5 +1,7 @@
 <h3>施設情報の編集</h3>
 
+<%= render 'shared/error', obj: @room %>
+
 <%= form_with model: @room do |f| %>
   <table>
     <tr>
@@ -30,7 +32,7 @@
 
   <div>
     <ul>
-      <li><%= f.submit "登録完了する"%></li>
+      <li><%= f.submit "編集完了する"%></li>
     </ul>
   </div>
 <% end %>

@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   def index
     @rooms = current_user.rooms.all
   end
@@ -8,7 +9,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(params.require(:room).permit(:name, :introduction, :charge_day, :address, :image, :user_id))
+    @room = Room.new(user_params)
     if @room.save
       redirect_to root_path
     else
@@ -27,11 +28,15 @@ class RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
-    if @room.update(params.require(:room).permit(:name, :introduction, :charge_day, :address, :image))
+    if @room.update(user_params)
       redirect_to :rooms
     else
       render 'edit'
     end
   end
-  
+
+  private
+  def user_params
+    params.require(:room).permit(:name, :introduction, :charge_day, :address, :image, :user_id)
+  end
 end

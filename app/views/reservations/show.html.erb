@@ -1,12 +1,8 @@
-<h3>施設詳細</h3>
+<h3>再予約する</h3>
 
 
 <%= link_to '戻る', 'javascript:history.back()' %>
 
-<% if !current_user %>
-<% elsif @room.user_id === current_user.id %>
-  <%= link_to "編集", "/rooms/#{@room.id}/edit" %>
-<% end %>
 
 
 <table border>
@@ -41,7 +37,7 @@
 
 <%= render 'shared/error', obj: @reservation %>
 
-<%= form_with model: @reservation, method: :get, url: new_reservation_path do |f| %>
+<%= form_with model: @reservation, method: :get, url: edit_reservation_path do |f| %>
   <% if !current_user %>
   <% else @room.user_id === current_user.id %>
     <%= f.hidden_field :room_id, value: @room.id %>

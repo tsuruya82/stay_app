@@ -17,7 +17,7 @@
         <td><%= sapporo.name %></td>
         <td><%= sapporo.address %></td>
         <td><%= sapporo.introduction %></td>
-        <td><%= sapporo.charge_day %></td>
+        <td><%= sapporo.charge_day.to_s(:delimited) %>円</td>
         <td><%= link_to '詳細はこちら', "/rooms/#{sapporo.id}" %></td>
       </tr>
     </tbody>

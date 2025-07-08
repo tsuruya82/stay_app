@@ -21,6 +21,29 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def show
+    @reservation = Reservation.find(params[:id])
+    @room = @reservation.room
+  end
+
+  def edit
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(reservation_params)
+    if @reservation.invalid?
+      @room = @reservation.room
+      render :show
+    end
+  end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    if @reservation.update(reservation_params)
+      redirect_to reservations_path
+    else
+      render :edit
+    end
+  end
+
   def destroy
   end
 

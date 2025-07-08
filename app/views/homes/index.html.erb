@@ -18,7 +18,7 @@
         <td><%= room.name %></td>
         <td><%= room.address %></td>
         <td><%= room.introduction %></td>
-        <td><%= room.charge_day %></td>
+        <td><%= room.charge_day.to_s(:delimited) %>円</td>
         <td><%= link_to '詳細はこちら', "/rooms/#{room.id}" %></td>
       </tr>
     </tbody>

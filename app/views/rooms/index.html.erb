@@ -21,7 +21,7 @@
         </td>
         <td><%= link_to room.name, "/rooms/#{room.id}" %></td>
         <td><%= room.introduction %></td>
-        <td><%= room.charge_day %></td>
+        <td><%= room.charge_day.to_s(:delimited) %>円</td>
         <td><%= room.created_at.to_s(:datetime_jp) %></td>
       </tr>
     </tbody>
