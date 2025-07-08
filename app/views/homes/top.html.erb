@@ -1,0 +1,13 @@
+<h3>トップページ</h3>
+<%= search_form_for @q, url: index_path do |f| %>
+  <%= f.search_field :address_cont, placeholder: 'エリア名を入力' %>
+  <%= f.submit '検索' %>
+<% end %>
+
+<h3>おすすめのエリア</h3>
+<ul>
+  <li><%= link_to '東京', tokyo_search_path %></li>
+  <li><%= link_to '大阪', osaka_search_path %></li>
+  <li><%= link_to '京都', kyoto_search_path %></li>
+  <li><%= link_to '札幌', sapporo_search_path %></li>
+</ul>

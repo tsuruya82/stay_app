@@ -1,0 +1,69 @@
+<h3>再予約する</h3>
+
+
+<%= link_to '戻る', 'javascript:history.back()' %>
+
+
+
+<table border>
+  <tr>
+    <th>施設画像</th>
+    <td>
+      <% if @room.image? %>
+        <%= image_tag @room.image.url %>
+      <% else %>
+        <%= image_tag("default_room.png") %>
+      <% end %>
+    </td>
+  </tr>
+  
+  <tr>
+    <th>施設名</th>
+    <td><%= @room.name %></td>
+  </tr>
+  
+  <tr>
+    <th>紹介文</th>
+    <td><%= @room.introduction %></td>
+  </tr>
+
+  <tr>
+    <th>宿泊料金(/日)</th>
+    <td><%= @room.charge_day.to_s(:delimited) %>円</td>
+  </tr>
+</table>
+
+<h3>予約</h3>
+
+<%= render 'shared/error', obj: @reservation %>
+
+<%= form_with model: @reservation, method: :get, url: edit_reservation_path do |f| %>
+  <% if !current_user %>
+  <% else @room.user_id === current_user.id %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+
+  <table>
+    <tr>
+      <th><%= f.label :check_in_date, 'チェックイン日' %></th>
+      <td><%= f.date_field :check_in_date %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :check_out_date, 'チェックアウト日' %></th>
+      <td><%= f.date_field :check_out_date %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :number_of_customers, '人数' %></th>
+      <td><%= f.number_field :number_of_customers %></td>
+    </tr>
+  </table>
+
+  <% if current_user %>
+    <%= f.submit "予約する" %></li>
+  <% else %>
+    <%= link_to 'ログイン', new_user_session_path %>
+  <% end %>
+<% end %>

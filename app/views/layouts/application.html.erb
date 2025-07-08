@@ -6,11 +6,43 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
+    <header>
+    <%= link_to 'TOP', '/' %>
+    <% if current_user %>
+      <% if current_user.icon_image? %>
+        <%= image_tag current_user.icon_image.url %>
+      <% else %>
+        <%= image_tag("default_icon.png") %>
+      <% end %>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary"><%= current_user.name %></button>
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+        <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+          <%= link_to '施設の新期登録', :new_room %>
+        <div class="dropdown-divider"></div>
+          <ul>
+            <li><%= link_to '予約済み一覧', :reservations %></li>
+            <li><%= link_to '登録済み一覧', :rooms %></li>
+            <li><%= link_to 'アカウント設定', users_account_path %></li>
+          </ul>
+        <div class="dropdown-divider"></div>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        </div>
+      </div>
+
+    <% else %> 
+      <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to '新期登録', new_user_registration_path %>
+    <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

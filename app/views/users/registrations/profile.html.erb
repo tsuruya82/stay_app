@@ -1,0 +1,13 @@
+<h3>プロフィールページ</h3>
+<p>アイコン画像 :
+<% if current_user.icon_image? %>
+  <%= image_tag current_user.icon_image.url %>
+<% else %>
+  <%= image_tag("default_icon.png") %>
+<% end %>
+</p>
+
+<p>名前 : <%= current_user.name %></p>
+<p>自己紹介 : <%= current_user.introduce %></p>
+
+<%= link_to "編集", "/users/profile_edit" %>

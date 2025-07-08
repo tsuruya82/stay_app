@@ -1,0 +1,25 @@
+<%= render 'shared/search_form' %>
+<a><%= @kyotos.count %>件が見つかりました。</a>
+
+<% @kyotos.each do |kyoto| %>
+  <table border>
+    <thead>
+      <tr>
+        <td>施設名</td>
+        <td>住所</td>
+        <td>施設詳細</td>
+        <td>宿泊料金</td>
+        <td>詳細</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= kyoto.name %></td>
+        <td><%= kyoto.address %></td>
+        <td><%= kyoto.introduction %></td>
+        <td><%= kyoto.charge_day.to_s(:delimited) %>円</td>
+        <td><%= link_to '詳細はこちら', "/rooms/#{kyoto.id}" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

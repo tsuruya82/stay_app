@@ -1,0 +1,30 @@
+
+<% @rooms.each do |room| %>
+  <table border>
+    <thead>
+      <tr>
+        <td>施設画像</td>
+        <td>施設名</td>
+        <td>紹介文</td>
+        <td>宿泊料金(/日)</td>
+        <td>作成日</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          <% if room.image? %>
+            <%= image_tag room.image.url, size:'240x150' %>
+          <% else %>
+            <%= image_tag("default_room.png") %>
+          <% end %>
+        </td>
+        <td><%= link_to room.name, "/rooms/#{room.id}" %></td>
+        <td><%= room.introduction %></td>
+        <td><%= room.charge_day.to_s(:delimited) %>円</td>
+        <td><%= room.created_at.to_s(:datetime_jp) %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

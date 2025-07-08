@@ -1,0 +1,27 @@
+<%= render 'shared/search_form' %>
+
+
+<a><%= @tokyos.count %>件が見つかりました。</a>
+
+<% @tokyos.each do |tokyo| %>
+  <table border>
+  <thead>
+    <tr>
+      <td>施設名</td>
+      <td>住所</td>
+      <td>施設詳細</td>
+      <td>宿泊料金</td>
+      <td>詳細</td>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= tokyo.name %></td>
+    <td><%= tokyo.address %></td>
+    <td><%= tokyo.introduction %></td>
+    <td><%= tokyo.charge_day.to_s(:delimited) %>円</td>
+    <td><%= link_to '詳細はこちら', "/rooms/#{tokyo.id}" %></td>
+  </tr>
+  </tbody>
+  </table>
+<% end %>
