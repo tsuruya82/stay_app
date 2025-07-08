@@ -1,4 +1,7 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
   def index
     @reservations = current_user.reservations.all
   end
@@ -45,10 +48,20 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.delete
+    redirect_to :reservations
   end
 
   private
     def reservation_params
       params.require(:reservation).permit(:check_in_date, :check_out_date, :number_of_customers, :user_id, :room_id)
+    end
+
+    def ensure_correct_user
+      @reservation = Reservation.find(params[:id])
+      if @reservation.user_id != current_user.id
+        redirect_to '/'
+      end
     end
 end

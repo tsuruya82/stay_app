@@ -3,6 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:profiles_update]
+  before_action :authenticate_user!, except: [:new, :create]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   # GET /resource/sign_up
   def new
@@ -36,10 +38,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def profile_update
     @user = current_user
-    if @user.update(params.require(:user).permit(:name, :icon_image, :introduce))
+    if @user.update(user_params)
       redirect_to "/"
     else
       render :profile_edit
+    end
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :icon_image, :introduce)
+  end
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to  new_user_session_path
     end
   end
 

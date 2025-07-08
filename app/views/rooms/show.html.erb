@@ -6,6 +6,7 @@
 <% if !current_user %>
 <% elsif @room.user_id === current_user.id %>
   <%= link_to "編集", "/rooms/#{@room.id}/edit" %>
+  <%= link_to "削除", room_path, method: :delete, data: { confirm: "施設を削除しますか？" } %>
 <% end %>
 
 

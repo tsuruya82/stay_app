@@ -12,7 +12,7 @@
 
   <body>
     <header>
-    <%= link_to 'HOME', '/' %>
+    <%= link_to 'TOP', '/' %>
     <% if current_user %>
       <% if current_user.icon_image? %>
         <%= image_tag current_user.icon_image.url %>
@@ -28,9 +28,11 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
           <%= link_to '施設の新期登録', :new_room %>
         <div class="dropdown-divider"></div>
-          <%= link_to '予約済み一覧', :reservations %>
-          <%= link_to '登録済み一覧', :rooms %>
-          <%= link_to 'アカウント設定', users_account_path %>
+          <ul>
+            <li><%= link_to '予約済み一覧', :reservations %></li>
+            <li><%= link_to '登録済み一覧', :rooms %></li>
+            <li><%= link_to 'アカウント設定', users_account_path %></li>
+          </ul>
         <div class="dropdown-divider"></div>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         </div>
