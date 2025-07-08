@@ -1,14 +1,14 @@
 <h1>予約内容の確認</h1>
 
 <ul>
-    <li>チェックイン日: <%= @reservation.check_in_date.to_s(:datetime_jp) %></li>
-    <li>チェックアウト日: <%= @reservation.check_out_date.to_s(:datetime_jp) %></li>
-    <li>宿泊日数: <%= @reservation.sum_of_days %>日</li>
-    <li>人数: <%= @reservation.number_of_customers %>人</li>
-    <li>支払い金額: <%= @reservation.sum_of_fee.to_s(:delimited) %>円</li>
+  <li>チェックイン日: <%= @reservation.check_in_date.to_s(:datetime_jp) %></li>
+  <li>チェックアウト日: <%= @reservation.check_out_date.to_s(:datetime_jp) %></li>
+  <li>宿泊日数: <%= @reservation.sum_of_days %>日</li>
+  <li>人数: <%= @reservation.number_of_customers %>人</li>
+  <li>支払い金額: <%= @reservation.sum_of_fee.to_s(:delimited) %>円</li>
 </ul>
 
- <%= form_with model: @reservation do |f| %>
+<%= form_with model: @reservation do |f| %>
   <%= f.hidden_field :room_id, value: @reservation.room_id %>
   <%= f.hidden_field :user_id, value: @reservation.user_id %>
   <%= f.hidden_field :check_in_date, value: @reservation.check_in_date %>
